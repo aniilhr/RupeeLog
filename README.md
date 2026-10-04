@@ -1,119 +1,257 @@
-# Money Tracker 💰
+# Money Tracker
 
-A simple, ultra-fast, mobile-first Android personal spending notebook designed to help you quickly record expenses, track your monthly spending at a glance, write spending reminders, and view this month's total right on your home screen.
+A simple, ultra-fast, mobile-first Android personal spending notebook designed to quickly record expenses, track monthly spending, write spending reminders, and view this month's total from the Android home screen.
 
----
+## Technology Stack
 
-## 🌟 Key Features
+- **Language:** Kotlin
+- **UI:** Jetpack Compose
+- **Design System:** Material 3
+- **Local Database:** Room + SQLite
+- **Annotation Processing:** KSP
+- **Async & Reactive:** Kotlin Coroutines + StateFlow
+- **Architecture:** MVVM + Repository Pattern
+- **Android Widget:** AppWidgetProvider + RemoteViews
+- **Testing:** JUnit4 + Robolectric
+- **Minimum SDK:** Android 7.0 (API 24)
 
-- **⚡ Lightning-Fast Spend Logging**:
-  - Add expenses in seconds with large touch targets.
-  - Inputs: Amount (`₹` INR), Description ("What did you spend on?"), optional Category chips (*Food*, *Travel*, *Shopping*, *Other*), and Date (defaults to Today).
+The application is completely local and does not require a backend, cloud database, or internet connection.
 
-- **📊 Monthly Spending at a Glance**:
-  - Prominent **This Month** summary card on the Home screen.
-  - Displays formatted totals (e.g., `₹4,250`).
-  - View recent transactions ordered newest-first.
-
-- **📑 Full Transaction History**:
-  - Review all past transactions with clear date and category labels.
-  - Automatic calculation of **This Month's Total** and **All-Time Total**.
-  - Category filters (*All*, *Food*, *Travel*, *Shopping*, *Other*).
-  - Edit existing transactions or delete them with an explicit confirmation dialog.
-
-- **📝 Personal Notes & Reminders**:
-  - Clean, dedicated notebook section for personal spending notes.
-  - Perfect for keeping tabs like:
-    - *"Paid ₹500 to Ravi for dinner"*
-    - *"Need to remember the electricity payment"*
-    - *"Bought headphones on October 2"*
-  - Timestamped with creation date and time.
-  - Easily add, edit, or delete notes.
-
-- **📱 Android Home-Screen Widget**:
-  - Minimalist, distraction-free widget displaying **ONLY** the current month's total spending:
-    ```
-    ┌──────────────────────┐
-    │   Money Tracker      │
-    │                      │
-    │      ₹4,250          │
-    │   Spent This Month   │
-    └──────────────────────┘
-    ```
-  - Automatically updates immediately whenever an expense is added, edited, or deleted.
-  - Accurately rolls over and displays the new total at the start of each month.
-  - Tap anywhere on the widget to open the Money Tracker app.
-
----
-
-## 🛡️ Privacy & Simplicity First
-
-- **🚫 No Ads**: Completely clean and distraction-free interface.
-- **🔒 100% Offline & Private**: All data is stored strictly on your local device.
-- **🙅 No Accounts or Logins**: No cloud sync, no tracking, and no internet access required.
-- **✨ No Over-Engineering**: No bank account linking, complex budgeting calculators, loans, or push notifications. Acts like your trusted personal digital pocketbook.
-
----
-
-## 🛠️ Technology Stack
-
-- **Language**: [Kotlin](https://kotlinlang.org/)
-- **UI Framework**: [Jetpack Compose](https://developer.android.com/jetpack/compose) with Material Design 3 (M3)
-- **Local Database**: [Android Room Database](https://developer.android.com/training/data-storage/room) with SQLite
-- **Annotation Processing**: [KSP (Kotlin Symbol Processing)](https://kotlinlang.org/docs/ksp-overview.html)
-- **Asynchronous & Reactive**: Kotlin Coroutines & StateFlow
-- **Architecture**: MVVM (Model-View-ViewModel) + Repository Pattern
-- **Android Widget**: `AppWidgetProvider` + `RemoteViews`
-- **Testing**: Robolectric & JUnit4 for JVM-based unit testing
-
----
-
-## 📲 How to Add the Home-Screen Widget
-
-1. Long-press on any empty space on your Android home screen.
-2. Tap **Widgets**.
-3. Scroll down and find **Money Tracker**.
-4. Touch and hold the **Money Tracker (Spent This Month)** widget, then drag it to your desired spot on the home screen.
-5. Resize the widget if desired. It will always keep your current month's total spending up to date!
-
----
-
-## 🚀 Installation & Build Process
+## Installation & Build
 
 ### Prerequisites
-- Android Studio Ladybug / Meerkat or later (or command-line Gradle)
-- JDK 17 or 21
-- Android SDK with API 36 / 35 (minimum SDK is 24)
 
-### Building the APK
-To build the debug APK:
-```bash
-gradle assembleDebug
-```
-The generated APK will be located at:
-`app/build/outputs/apk/debug/app-debug.apk`
+- Android Studio Ladybug, Meerkat, or newer
+- JDK 17 or newer
+- Android SDK
+- Android device or emulator
+- USB debugging enabled when using a physical device
 
-### Installing on Device / Emulator
-Connect an Android device or start an Android emulator, then run:
+### Clone the Repository
+
 ```bash
-gradle installDebug
+git clone https://github.com/aniilhr/money-tracker-android.git
+cd money-tracker-android
 ```
 
-### Running Unit Tests
-To execute local JVM Robolectric unit tests:
+### Build the Debug APK
+
+Linux/macOS:
+
 ```bash
-gradle :app:testDebugUnitTest
+./gradlew assembleDebug
 ```
 
----
+Windows:
 
-## 🆕 What's New in Version 1.0.0
+```powershell
+.\gradlew.bat assembleDebug
+```
 
-- **Initial Release** of the fast, mobile-first Money Tracker.
-- Modern Material 3 user interface with dynamic dark mode and emerald branding.
-- Quick Add Spend dialog with single-tap category chips and date selection.
-- Home screen with "This Month" spending highlight and recent spend list.
-- Comprehensive Transactions screen with monthly vs all-time totals and category filtering.
-- Spending-focused Notes section with timestamps.
-- Native Android Home-Screen Widget updating synchronously on spend changes.
-- Safe local persistence using Android Room.
+Generated APK:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+### Install on a Connected Android Device
+
+Linux/macOS:
+
+```bash
+./gradlew installDebug
+```
+
+Windows:
+
+```powershell
+.\gradlew.bat installDebug
+```
+
+Or install the generated APK manually:
+
+```bash
+adb install app/build/outputs/apk/debug/app-debug.apk
+```
+
+### Run Tests
+
+```bash
+./gradlew :app:testDebugUnitTest
+```
+
+Windows:
+
+```powershell
+.\gradlew.bat :app:testDebugUnitTest
+```
+
+## Features
+
+### Fast Spend Logging
+
+- Add expenses in seconds.
+- Amount in INR.
+- Description.
+- Optional category: Food, Travel, Shopping, Other.
+- Date defaults to Today.
+
+### Monthly Spending at a Glance
+
+- Prominent **This Month** spending total.
+- Formatted INR totals such as `₹4,250`.
+- Recent transactions ordered newest first.
+- Automatic monthly total calculation.
+- All-time spending total.
+
+### Transaction History
+
+- View all recorded transactions.
+- Amount, description, category, and date.
+- Category filters:
+  - All
+  - Food
+  - Travel
+  - Shopping
+  - Other
+- Edit transactions.
+- Delete transactions with confirmation.
+
+### Personal Notes
+
+A simple notebook for spending-related reminders.
+
+Examples:
+
+- "Paid ₹500 to Ravi for dinner"
+- "Need to remember the electricity payment"
+- "Bought headphones on October 2"
+
+Each note stores:
+
+- Note text
+- Created date and time
+- Updated date and time
+
+Notes can be added, edited, and deleted.
+
+### Android Home Screen Widget
+
+A native Android widget showing only the current month's spending.
+
+```text
+┌──────────────────────┐
+│   Money Tracker      │
+│                      │
+│      ₹4,250          │
+│   Spent This Month   │
+└──────────────────────┘
+```
+
+The widget:
+
+- Shows only the current month's total.
+- Does not show individual transactions.
+- Does not show categories.
+- Does not show notes.
+- Updates when an expense is added, edited, or deleted.
+- Automatically reflects the new month's total.
+- Opens the app when tapped.
+
+## Privacy
+
+Money Tracker is designed to be completely local.
+
+- 100% offline.
+- All data stays on the device.
+- No account or login.
+- No cloud database.
+- No Firebase.
+- No analytics.
+- No advertising.
+- No tracking.
+- No external APIs.
+- No internet connection required.
+
+## Design Principles
+
+The application intentionally avoids unnecessary complexity.
+
+- Clean and minimal interface.
+- No decorative gradients.
+- No excessive pill-shaped controls.
+- No unnecessary animations.
+- No excessive scroll effects.
+- No fake statistics or metrics.
+- No fake reviews or testimonials.
+- No AI-generated photographs.
+- No unnecessary onboarding.
+- No promotional screens.
+- Prioritize speed, readability, accessibility, and one-hand use.
+- Prefer native Android components where practical.
+
+The app should feel like a practical personal utility rather than a marketing product.
+
+## Core Workflow
+
+```text
+Add Spend
+    ↓
+Save Locally
+    ↓
+Calculate Monthly Total
+    ↓
+View Transactions
+    ↓
+Add Notes
+    ↓
+Update Widget
+```
+
+## Widget Setup
+
+1. Long-press an empty area on the Android home screen.
+2. Tap **Widgets**.
+3. Find **Money Tracker**.
+4. Touch and hold the widget.
+5. Drag it onto the home screen.
+6. Resize it if required.
+
+The widget automatically displays the current month's spending total.
+
+## Scope
+
+Money Tracker deliberately does not include:
+
+- Income tracking
+- Bank accounts
+- Bank synchronization
+- Budget planning
+- Investments
+- Loans
+- Credit cards
+- Complex charts
+- Financial reports
+- Social features
+- Notifications
+- Cloud synchronization
+- Advertising
+
+## Version 1.0.0
+
+Initial release including:
+
+- Fast expense entry.
+- INR currency support.
+- Monthly spending summary.
+- All-time spending total.
+- Transaction history.
+- Category filtering.
+- Expense editing and deletion.
+- Delete confirmation.
+- Personal notes.
+- Native Android home-screen widget.
+- Local Room database.
+- Dark mode support.
+- Offline-first operation.
+- Minimal Material 3 interface.
