@@ -1,4 +1,4 @@
-# Money Tracker
+# Money Tracker (RupeeLog)
 
 A simple, ultra-fast, mobile-first Android personal spending notebook designed to quickly record expenses, track monthly spending, write spending reminders, and view this month's total from the Android home screen.
 
